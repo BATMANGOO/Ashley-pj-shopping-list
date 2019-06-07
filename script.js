@@ -5,8 +5,8 @@ function submit(){
   $('#js-shopping-list-form').submit(function(event) {
     event.preventDefault();
     const textInput = $(event.currentTarget).find('#shopping-list-entry');
-
-    $('ul').append(`<li>
+    if(textInput.val() !== ''){
+      $('ul').append(`<li>
         <span class="shopping-item">${textInput.val()}</span>
         <div class="shopping-item-controls">
           <button class="shopping-item-toggle">
@@ -19,7 +19,8 @@ function submit(){
       </li>
       <li>`);
 
-    textInput.val('');
+      textInput.val('');
+    }
   });
 }
 
