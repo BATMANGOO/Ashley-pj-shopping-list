@@ -1,11 +1,10 @@
 'use strict';
 /*eslint-env jquery*/
 
-$(function submit(){
-  $('#js-shopping-list-form').submit(event => {
+function submit(){
+  $('#js-shopping-list-form').submit(function(event) {
     event.preventDefault();
-    const textInput = 
-    $(event.currentTarget).find('#shopping-list-entry');
+    const textInput = $(event.currentTarget).find('#shopping-list-entry');
 
     $('ul').append(`<li>
         <span class="shopping-item">${textInput.val()}</span>
@@ -22,14 +21,17 @@ $(function submit(){
 
     textInput.val('');
   });
+}
+
+
+const toggleCheck = $('.shopping-list').on('click','.shopping-item-toggle', function(){
+  $(this).closest('.shopping-item-controls').siblings('.shopping-item').toggleClass('shopping-item__checked');
 });
 
-const toggleCheck = $(function(event){
-  $('.shopping-item-toggle').on('click', function(){
-    $('.shopping-item').toggleClass('shopping-item__checked');
-  });
+const toggleDelete = $('.shopping-list').on('click','.shopping-item-delete', function(){
+  $(this).closest('li').remove();
 });
 
-
+$(submit);
 
 
